@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class pushbutton : MonoBehaviour
 {
-    Vector3 position;
+    public float distance = 1.16f;
+
     void Start()
     {
 
     }
-
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
-        position = this.transform.position;
-        position.x = -1.16f;
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+            //transform.position = new Vector3(-2.46f, 5.55f - distance, 4.95f);
+        }
     }
 }
