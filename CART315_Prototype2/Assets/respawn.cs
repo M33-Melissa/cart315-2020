@@ -6,12 +6,14 @@ public class respawn : MonoBehaviour
 {
     public Transform spawnPoint;//Add empty gameobject as spawnPoint
     public float deathHeight = -20.0f;
-    public GameObject player; //Add your player
 
-    void Update()
+    void FixedUpdate()
     {
-        if (player.transform.position.y < deathHeight)
-            player.transform.position = spawnPoint.position;
+        if (transform.position.y < deathHeight)
+        {
+            transform.position = spawnPoint.position;
+        }
+            
     }
 
 }
