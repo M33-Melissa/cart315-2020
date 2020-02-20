@@ -4,18 +4,36 @@ using UnityEngine;
 
 public class pushbutton : MonoBehaviour
 {
-    public float distance = 1.16f;
+    public BallSpawner spawner = null;
+    private Animator animator = null;
+    private bool isColliding = false;
 
-    void Start()
+    private void Awake()
     {
-
+        animator = GetComponent<Animator>();
     }
-    private void OnMouseOver()
+    private void OnTriggerEnter(Collider other)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (other.CompareTag("Player"))
         {
-            
-            //transform.position = new Vector3(-2.46f, 5.55f - distance, 4.95f);
+            isColliding = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isColliding = false;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && isColliding)
+        {
+            animator.SetTrigger("Press");
+            //spawn balls
+            Renderer renderer = GetComponent<Renderer>();
+            spawner.SpawnBalls(renderer.material.color);
         }
     }
 }
